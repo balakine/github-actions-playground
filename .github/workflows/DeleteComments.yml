@@ -3,9 +3,9 @@ on:
     types: [created]
 
 jobs:
-  hello_world_job:
+  delete_job:
     runs-on: ubuntu-latest
     name: Delete uninformative SonarCloud PR comments
     steps:
-      - name: Delete uninformative SonarCloud PR comments
-        uses: ./.github/actions/delete-comments
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions/delete-comments
