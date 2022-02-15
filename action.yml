@@ -1,0 +1,5 @@
+name: 'delete-comments'
+description: 'Delete uninformative SonarCloud PR comments'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
