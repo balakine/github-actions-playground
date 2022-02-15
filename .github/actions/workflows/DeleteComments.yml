@@ -1,0 +1,11 @@
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Delete uninformative SonarCloud PR comments
+    steps:
+      - name: Delete uninformative SonarCloud PR comments
+        uses: ./.github/actions/delete-comments
