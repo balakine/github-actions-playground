@@ -6,7 +6,7 @@ jobs:
   delete_job:
     name: Delete comments job
     # This job only runs for comments by sonarcloud[bot]
-    if: ${{ github.event.comment.user.login == 'balakine' }}
+    if: ${{ github.event.comment.user.login == 'balakine1' }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout step
