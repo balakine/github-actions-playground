@@ -1,11 +1,15 @@
 on:
   issue_comment:
-    types: [created]
+    types: [ created ]
 
 jobs:
-  hello_world_job:
+  delete_job:
+    # This job only runs for pull request comments
+    name: Delete comments job
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
-    name: Delete uninformative SonarCloud PR comments
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./.github/actions/delete-comments
+      - name: Checkout step
+        uses: actions/checkout@v2
+      - name: Delete step
+        uses: ./.github/actions/delete-comments
