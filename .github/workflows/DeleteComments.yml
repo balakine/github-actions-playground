@@ -15,6 +15,4 @@ jobs:
       uses: ./.github/actions/delete-comments
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BLAH1: ${{ github.event.comment }}
-        BLAH2: ${{ github.event.comment.user }}
         BLAH3: ${{ github.event.comment.user.login }}
