@@ -4,14 +4,14 @@ on:
 
 jobs:
   delete_job:
-    # This job only runs for pull request comments
     name: Delete comments job
-    if: ${{ github.event.issue.pull_request }}
+    # This job only runs for comments by sonarcloud[bot]
+    if: ${{ github.event.user.login == 'balakine' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout step
-        uses: actions/checkout@v2
-      - name: Delete step
-        uses: ./.github/actions/delete-comments
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout step
+      uses: actions/checkout@v2
+    - name: Delete step
+      uses: ./.github/actions/delete-comments
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
