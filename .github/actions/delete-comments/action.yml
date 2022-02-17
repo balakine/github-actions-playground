@@ -10,6 +10,14 @@ runs:
       path: .github/actions/delete-comments/node_modules
       key: actions-delete-comments-${{ hashFiles('.github/actions/delete-comments/package-lock.json') }}
 
+  - name: Install dependencies step1
+    run: pwd
+    shell: bash
+
+  - name: Install dependencies step2
+    run: ls -al
+    shell: bash
+
   - name: Install dependencies step
     if: ${{ steps.cache.outputs.cache-hit != 'true' }}
     run: cd .github/actions/delete-comments && npm ci --ignore-scripts
