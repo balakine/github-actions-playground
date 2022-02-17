@@ -1,14 +1,56 @@
 'use strict';
 
-//const core = require('@actions/core');
-const github = require('@actions/github');
+import { context, getOctokit } from '@actions/github';
 
-const payload = github.context.payload;
-const user_login = payload.comment.user.login;
-const user_id = payload.comment.user.id;
-const user_type = payload.comment.user.type;
+const targetUserLogin = 'balakine';
+const targetUserId = 9373325;
+const targetUserType = 'User';
+const substrings = [
+  'blah',
+];
 
-console.log(`User login: ${user_login}, user id: ${user_id}, user type: ${user_type}`);
-if (user_login !== 'balakine' || user_id !== 9373325 || user_type !== 'User')
-    process.exit()
-console.log('New comment');
+const repo = context.repo; // is an object {owner: string; repo: string}
+const comment = context.payload.comment;
+const userLogin = comment.user.login;
+const userId = comment.user.id;
+const userType = comment.user.type;
+const body = comment.body;
+const commentId = comment.id;
+
+console.log(`User login: ${userLogin}, user id: ${userId}, user type: ${userType}`);
+if (userLogin === targetUserLogin && userId === targetUserId && userType === targetUserType) {
+  console.log('✅ User matches');
+} else {
+  console.log(`⏭ Only looking for user login: ${targetUserLogin}, user id: ${targetUserId}, user type: ${targetUserType}`);
+  process.exit();
+}
+
+if (isMatching(body, substrings)) {
+  console.log('✅ Comment body matches');
+} else {
+  console.log('⏭ Comment body doesn\'t match');
+  process.exit();
+}
+
+const octokit = getOctokit(process.env.GITHUB_TOKEN);
+const request = {
+  ...repo,
+  comment_id: commentId,
+};
+console.log(`Request: ${ JSON.stringify(request) }`);
+
+octokit.rest.issues.deleteComment(request)
+.then(({ data }) => {
+  console.log(`✅ Response: ${ JSON.stringify(data) }`);
+})
+.catch(error => {
+  console.error(`🔥 Error: ${error}`);
+});
+
+function isMatching(body, substrings) {
+  return substrings.every(s => {
+    const f = body.includes(s);
+    console.log(`${s}: ${f}`);
+    return f;
+  });
+}
