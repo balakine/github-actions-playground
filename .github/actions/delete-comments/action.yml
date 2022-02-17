@@ -16,5 +16,9 @@ runs:
     shell: bash
 
   - name: Run step
+    run: node --version
+    shell: bash
+
+  - name: Run step
     run: node .github/actions/delete-comments/index.js
     shell: bash
