@@ -9,8 +9,8 @@ jobs:
     if: ${{ github.event.comment.user.login == 'balakine' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout step
-      uses: actions/checkout@v2
+#    - name: Checkout step
+#      uses: actions/checkout@v2
 
 #    - name: Cache node_modules step
 #      id: cache
@@ -24,7 +24,7 @@ jobs:
 #      run: cd .github/actions/delete-comments && npm ci --ignore-scripts
 
     - name: Delete step
-      uses: ./.github/actions/delete-comments
+      uses: balakine/github-actions-playground/.github/actions/delete-comments
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
