@@ -15,7 +15,7 @@ runs:
     shell: bash
 
   - name: Install dependencies step2
-    run: ls -al
+    run: ls -al .github
     shell: bash
 
   - name: Install dependencies step
