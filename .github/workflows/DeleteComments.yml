@@ -11,8 +11,19 @@ jobs:
     steps:
     - name: Checkout step
       uses: actions/checkout@v2
+
+    - name: Cache node_modules step
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: .github/actions/delete-comments/node_modules
+        key: actions-delete-comments-${{ hashFiles('.github/actions/delete-comments/package-lock.json') }}
+
+    - name: Install dependencies
+      if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+      run: cd .github/actions/delete-comments && npm ci --ignore-scripts
+
     - name: Delete step
       uses: ./.github/actions/delete-comments
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BLAH3: ${{ github.event.comment.user.login }}
