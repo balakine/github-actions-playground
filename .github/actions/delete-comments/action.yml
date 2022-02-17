@@ -15,7 +15,7 @@ runs:
     shell: bash
 
   - name: Install dependencies step2
-    run: ls -al .github/actions
+    run: ls -al .github/actions/delete-comments
     shell: bash
 
   - name: Install dependencies step
