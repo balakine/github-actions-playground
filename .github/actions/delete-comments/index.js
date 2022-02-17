@@ -40,8 +40,8 @@ const request = {
 console.log(`Request: ${ JSON.stringify(request) }`);
 
 octokit.rest.issues.deleteComment(request)
-.then(response => {
-  console.log(`✅ Response: ${ JSON.stringify(response) }`);
+.then(({ status, url, data }) => {
+  console.log(`✅ Response: ${ JSON.stringify({ status, url, data }) }`);
 })
 .catch(error => {
   console.error(`🔥 Error: ${error}`);
