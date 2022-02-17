@@ -22,14 +22,14 @@ if (userLogin === targetUserLogin && userId === targetUserId && userType === tar
   console.log('✅ User matches');
 } else {
   console.log(`⏭ Only looking for user login: ${targetUserLogin}, user id: ${targetUserId}, user type: ${targetUserType}`);
-  process.exit();
+  process.exit(0);
 }
 
 if (isMatching(body, substrings)) {
   console.log('✅ Comment body matches');
 } else {
   console.log('⏭ Comment body doesn\'t match');
-  process.exit();
+  process.exit(0);
 }
 
 const octokit = getOctokit(process.env.GITHUB_TOKEN);
@@ -40,8 +40,8 @@ const request = {
 console.log(`Request: ${ JSON.stringify(request) }`);
 
 octokit.rest.issues.deleteComment(request)
-.then(({ data }) => {
-  console.log(`✅ Response: ${ JSON.stringify(data) }`);
+.then(response => {
+  console.log(`✅ Response: ${ JSON.stringify(response) }`);
 })
 .catch(error => {
   console.error(`🔥 Error: ${error}`);
