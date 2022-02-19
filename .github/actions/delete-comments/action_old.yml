@@ -1,0 +1,20 @@
+name: delete-comments
+description: Delete uninformative SonarCloud PR comments
+runs:
+  using: composite
+  steps:
+  - name: Cache node_modules step
+    id: cache
+    uses: actions/cache@v2
+    with:
+      path: .github/actions/delete-comments/node_modules
+      key: actions-delete-comments-${{ hashFiles('.github/actions/delete-comments/package-lock.json') }}
+
+  - name: Install dependencies step
+    if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+    run: cd .github/actions/delete-comments && npm ci --ignore-scripts
+    shell: bash
+
+  - name: Run step
+    run: node .github/actions/delete-comments/index.js
+    shell: bash
