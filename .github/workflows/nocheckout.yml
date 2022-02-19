@@ -24,7 +24,7 @@ jobs:
 #      run: cd .github/actions/delete-comments && npm ci --ignore-scripts
 
     - name: Delete step
-      uses: balakine/github-actions-playground/.github/actions/delete-comments@main
+      uses: balakine/public-action-subfolder/delete-comments@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
