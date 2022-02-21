@@ -1,3 +1,5 @@
+name: Delete comment
+
 on:
   issue_comment:
     types: [ created ]
@@ -9,22 +11,8 @@ jobs:
     if: ${{ github.event.comment.user.login == 'balakine' }}
     runs-on: ubuntu-latest
     steps:
-#    - name: Checkout step
-#      uses: actions/checkout@v2
-
-#    - name: Cache node_modules step
-#      id: cache
-#      uses: actions/cache@v2
-#      with:
-#        path: .github/actions/delete-comments/node_modules
-#        key: actions-delete-comments-${{ hashFiles('.github/actions/delete-comments/package-lock.json') }}
-
-#    - name: Install dependencies
-#      if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-#      run: cd .github/actions/delete-comments && npm ci --ignore-scripts
 
     - name: Delete step
-      uses: balakine/public-action-subfolder/delete-comments@main
+      uses: balakine/public-action-subfolder@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
