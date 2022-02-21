@@ -16,3 +16,7 @@ jobs:
       uses: balakine/delete-comment-action@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        userId: 9373325
+        userLogin: balakine
+        userType: User
