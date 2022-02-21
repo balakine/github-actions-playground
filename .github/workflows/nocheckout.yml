@@ -6,13 +6,13 @@ on:
 
 jobs:
   delete_job:
-    name: Delete comments job
+    name: Delete comment job
     # This job only runs for comments by sonarcloud[bot]
     if: ${{ github.event.comment.user.login == 'balakine' }}
     runs-on: ubuntu-latest
     steps:
 
     - name: Delete step
-      uses: balakine/public-action-subfolder@main
+      uses: balakine/delete-comment-action@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
