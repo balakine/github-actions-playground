@@ -17,6 +17,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        userId: '9373325'
-        userLogin: 'balakine'
-        userType: 'User'
+        userId: 9373325
+        userLogin: balakine
+        userType: User
