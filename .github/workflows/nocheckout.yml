@@ -18,5 +18,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         userId: '9373325'
-        user-login: 'balakine'
+        userLogin: 'balakine'
         userType: 'User'
